@@ -14,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="m-auto flex max-w-4xl flex-col items-center gap-4 py-10 px-5">
+        {children}
+      </body>
     </html>
   );
 }
