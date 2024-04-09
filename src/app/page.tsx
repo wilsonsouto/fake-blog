@@ -1,10 +1,12 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { MdCancel } from "react-icons/md";
 
 export default function Home() {
   const [posts, setPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [display, setDisplay] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -35,11 +37,51 @@ export default function Home() {
           fake blog
         </h1>
         <button
+          onClick={() => setDisplay(true)}
           type="button"
-          className="rounded-md px-4 py-2 text-sm text-black sm:text-lg"
+          className="rounded-md bg-blue-500 px-4 py-2 text-sm text-white hover:bg-blue-600 sm:text-lg"
         >
           Add post
         </button>
+        {display && (
+          <div
+            className={`fixed left-0 top-0 flex h-screen w-screen items-center justify-center bg-black bg-opacity-70`}
+          >
+            <form className="flex w-9/12 items-start justify-start rounded-md bg-white p-5 shadow-lg sm:w-4/12">
+              <div className="flex w-full flex-col gap-2 text-xl">
+                <div className="item-center flex justify-between">
+                  <h4 className="mb-2 font-semibold">Title</h4>
+                  <button
+                    onClick={() => setDisplay(false)}
+                    type="button"
+                    className="text-red-600"
+                  >
+                    <MdCancel />
+                  </button>
+                </div>
+                <input
+                  id="title"
+                  type="text"
+                  className="mb-4 w-full rounded-md bg-gray-200 px-3 py-2"
+                  placeholder="Insert here..."
+                />
+                <h4 className="mb-2 font-semibold">Subtitle</h4>
+                <input
+                  id="subtitle"
+                  type="text"
+                  className="mb-4 w-full rounded-md bg-gray-200 px-3 py-2"
+                  placeholder="Insert here..."
+                />
+                <button
+                  type="button"
+                  className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+                >
+                  Add
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
       </header>
       <picture>
         <Image
