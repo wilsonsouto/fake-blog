@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { MdCancel } from "react-icons/md";
 import Button from "@/components/Button";
+import Input from "@/components/Input";
 
 export default function Home() {
   const [posts, setPosts] = useState<any[]>([]);
@@ -65,19 +66,9 @@ export default function Home() {
                     <MdCancel />
                   </button>
                 </div>
-                <input
-                  id="title"
-                  type="text"
-                  className="mb-4 w-full rounded-md bg-gray-200 px-3 py-2"
-                  placeholder="Insert here..."
-                />
+                <Input id="title" />
                 <h4 className="mb-2 font-semibold">Subtitle</h4>
-                <input
-                  id="body"
-                  type="text"
-                  className="mb-4 w-full rounded-md bg-gray-200 px-3 py-2"
-                  placeholder="Insert here..."
-                />
+                <Input id="body" />
                 <Button onClick={() => addNewPost()} text="Add" />
               </div>
             </form>
