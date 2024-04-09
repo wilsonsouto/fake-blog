@@ -8,6 +8,17 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [display, setDisplay] = useState(false);
 
+  const addNewPost = () => {
+    const title = (document.getElementById("title") as HTMLInputElement).value;
+    const body = (document.getElementById("body") as HTMLInputElement).value;
+    const newPost = { title, body };
+
+    if (title && body) {
+      posts.unshift(newPost);
+      setDisplay(false);
+    }
+  };
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -67,12 +78,13 @@ export default function Home() {
                 />
                 <h4 className="mb-2 font-semibold">Subtitle</h4>
                 <input
-                  id="subtitle"
+                  id="body"
                   type="text"
                   className="mb-4 w-full rounded-md bg-gray-200 px-3 py-2"
                   placeholder="Insert here..."
                 />
                 <button
+                  onClick={() => addNewPost()}
                   type="button"
                   className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
                 >
