@@ -44,7 +44,7 @@ export default function Home() {
   return (
     <>
       <header className="flex w-full flex-row items-center justify-between">
-        <h1 className="font-header text-2xl sm:text-3xl md:text-4xl">
+        <h1 className="font-header text-3xl sm:text-3xl md:text-4xl">
           fake blog
         </h1>
         <button
@@ -58,7 +58,7 @@ export default function Home() {
           <div
             className={`fixed left-0 top-0 flex h-screen w-screen items-center justify-center bg-black bg-opacity-70`}
           >
-            <form className="flex w-9/12 items-start justify-start rounded-md bg-white p-5 shadow-lg sm:w-4/12">
+            <form className="flex w-9/12 items-start justify-start rounded-md bg-white p-5 shadow-lg md:w-4/12">
               <div className="flex w-full flex-col gap-2 text-xl">
                 <div className="item-center flex justify-between">
                   <h4 className="mb-2 font-semibold">Title</h4>
@@ -107,8 +107,8 @@ export default function Home() {
       <section className="flex flex-col gap-4">
         {posts.map((post) => (
           <article className="flex flex-col gap-4" key={post.id}>
-            <h3 className="font-header text-3xl">{post.title}</h3>
-            <p className="font-par">{post.body}</p>
+            <h3 className="font-header text-2xl">{post.title}</h3>
+            <p className="font-par text-base sm:text-lg">{post.body}</p>
             <hr className="border-t-1 mt-1 border-[#ccc]" />
           </article>
         ))}
