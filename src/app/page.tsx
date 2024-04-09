@@ -1,6 +1,33 @@
+"use client";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [posts, setPosts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch(
+          "https://jsonplaceholder.typicode.com/posts",
+        );
+        const json = await response.json();
+        setPosts(json);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <header className="flex w-full flex-row items-center justify-between">
@@ -23,17 +50,14 @@ export default function Home() {
           alt="vinyl records"
         />
       </picture>
-      <section className="flex flex-col gap-2">
-        <h2 className="font-header text-xl sm:text-2xl md:text-3xl">
-          Lorem ipsum dolor
-        </h2>
-        <p className="font-par text-sm sm:text-lg">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam ab
-          sapiente, non doloremque repudiandae incidunt natus, voluptatum rerum
-          quod asperiores autem officiis alias distinctio assumenda provident
-          cupiditate quam nemo facere.
-        </p>
-        <hr className="border-t-1 mt-4 border-zinc-300" />
+      <section className="flex flex-col gap-4">
+        {posts.map((post) => (
+          <article className="flex flex-col gap-4" key={post.id}>
+            <h3 className="font-header text-3xl">{post.title}</h3>
+            <p className="font-par">{post.body}</p>
+            <hr className="border-t-1 mt-1 border-[#ccc]" />
+          </article>
+        ))}
       </section>
     </>
   );
