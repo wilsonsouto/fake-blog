@@ -13,10 +13,18 @@ export default function Home() {
   const addNewPost = () => {
     const title = (document.getElementById("title") as HTMLInputElement).value;
     const body = (document.getElementById("body") as HTMLInputElement).value;
-    const newPost = { title, body };
+    validatePost(title, body);
+  };
+
+  const validatePost = (title: string, body: string) => {
+    for (let post in posts) {
+      if (posts[post].title == title && posts[post].body == body) {
+        return alert("Post already exists");
+      }
+    }
 
     if (title && body) {
-      posts.unshift(newPost);
+      posts.unshift({ title, body });
       setDisplay(false);
     }
   };
@@ -57,7 +65,7 @@ export default function Home() {
             <form className="flex w-9/12 items-start justify-start rounded-md bg-white p-5 shadow-lg md:w-4/12">
               <div className="flex w-full flex-col gap-2 text-xl">
                 <div className="item-center flex justify-between">
-                  <h4 className="mb-2 font-semibold">Title</h4>
+                  <h4 className="mb-2 font-semibold">Header</h4>
                   <button
                     onClick={() => setDisplay(false)}
                     type="button"
@@ -67,7 +75,7 @@ export default function Home() {
                   </button>
                 </div>
                 <Input id="title" />
-                <h4 className="mb-2 font-semibold">Subtitle</h4>
+                <h4 className="mb-2 font-semibold">Post Content</h4>
                 <Input id="body" />
                 <Button onClick={() => addNewPost()} text="Add" />
               </div>
