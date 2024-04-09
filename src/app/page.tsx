@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { MdCancel } from "react-icons/md";
+import Button from "@/components/Button";
 
 export default function Home() {
   const [posts, setPosts] = useState<any[]>([]);
@@ -47,13 +48,7 @@ export default function Home() {
         <h1 className="font-header text-3xl sm:text-3xl md:text-4xl">
           fake blog
         </h1>
-        <button
-          onClick={() => setDisplay(true)}
-          type="button"
-          className="rounded-md bg-blue-500 px-4 py-2 text-sm text-white hover:bg-blue-600 sm:text-lg"
-        >
-          Add post
-        </button>
+        <Button onClick={() => setDisplay(true)} text="New post" />
         {display && (
           <div
             className={`fixed left-0 top-0 flex h-screen w-screen items-center justify-center bg-black bg-opacity-70`}
@@ -83,13 +78,7 @@ export default function Home() {
                   className="mb-4 w-full rounded-md bg-gray-200 px-3 py-2"
                   placeholder="Insert here..."
                 />
-                <button
-                  onClick={() => addNewPost()}
-                  type="button"
-                  className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-                >
-                  Add
-                </button>
+                <Button onClick={() => addNewPost()} text="Add" />
               </div>
             </form>
           </div>
