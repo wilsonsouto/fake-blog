@@ -59,7 +59,6 @@ The following tools were used in this project:
 - [TypeScript](https://www.typescriptlang.org/)
 - [TailwindCSS](https://tailwindcss.com/)
 - [JSONPlaceholder API](https://jsonplaceholder.typicode.com/)
-- [React Icons](https://github.com/react-icons/react-icons)
 
 ## :white_check_mark: Requirements
 
